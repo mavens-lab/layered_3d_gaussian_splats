@@ -1,0 +1,1 @@
+# gaussian_splats_streaming

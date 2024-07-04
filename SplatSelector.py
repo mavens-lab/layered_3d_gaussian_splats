@@ -10,7 +10,7 @@ import math
 
 #inputs:
 #  utility: NxM size matrix, with integer utility values.
-#  size: Mx1 vector that states the size of each layer, for each object
+#  size: NxM matrix, with the size of each layer and object
 #  budget: the available capacity
 
 #outputs:
@@ -22,11 +22,11 @@ class SplatSelector:
         num_objects = len(utility)
         num_layers = len(utility[0])
 
-
         #do a bit of data manipulation for the multiple choice knapsack code, which has a different data input format
         self.items = list(range(num_objects*num_layers))
-        self.values = self.__flatten_concatenation(utility)
-        self.weights = self.__flatten_concatenation([list(range(i,i+num_layers*i,i)) for i in size])
+        self.values = self.__flatten_concatenation(utility)       
+        #self.weights = self.__flatten_concatenation([list(range(i,i+num_layers*i,i)) for i in size] #this is for the old version where size was a Mx1 vector
+        self.weights = self.__flatten_concatenation(size)
         self.groups = self.__flatten_concatenation([[i]*num_layers for i in range(num_objects)])
         self.budget = budget
 
@@ -199,20 +199,22 @@ class SplatSelector:
         return self.__solve_multiple_choice_knapsack(self.items, self.budget, self.weights, self.values, self.groups)
 
 
+
 #example code to test is below
 
 #generate random increasing utility functions
 util = np.random.rand(5,4)
 util[:,1] = util[:,1] + util[:,0]
 util[:,2] = util[:,2] + util[:,1]
-util[:,3] = util[:,3] + util[:,2]
-
-#round up utility to integers for knapsack problem
-util = [[round(i*100)+1 for i in nested] for nested in util]
+util[:,3] = util[:,3] + util[:,2] 
+util = [[round(i*100)+1 for i in nested] for nested in util] #round up utility to integers for knapsack problem
 
 print("utility of objects:", util)
 
-size = [1, 2, 3, 4, 5]
+#generate random sizes
+#size = [1, 2, 3, 4, 5]
+size = np.random.rand(5,4)
+size = [[round(i*10+1) for i in nested] for nested in size]
 print("Size of each object each layer:", size)
 
 # predicted bandwidth
@@ -221,4 +223,5 @@ print("Budget:", budget)
 
 #solve the knapsack
 ss = SplatSelector(util,size,budget)
+print()
 print(ss.solve_multiple_choice_knapsack())

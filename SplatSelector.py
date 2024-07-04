@@ -6,15 +6,15 @@ import math
 #SplatSelector takes a list of objects and layers and their utility and size as input, and the available capacity.
 #It outputs the selected layers that maximize utility within the time slot.
 #Suppose we have N objects and M layers.
-#Example execution code is at the bottom.
+#Example execution code is at the bottom of this script.
 
 #inputs:
-#-utility: NxM size matrix, with integer utility values.
-#-size: Mx1 vector that states the size of each layer, for each object
-#-budget: the available capacity
+#  utility: NxM size matrix, with integer utility values.
+#  size: Mx1 vector that states the size of each layer, for each object
+#  budget: the available capacity
 
 #outputs:
-#-selected_layers: NxM size matrix, with "1" meaning the layer should be downloaded, and "0" otherwise.
+#  selected_layers: NxM size matrix, with "1" meaning the layer should be downloaded, and "0" otherwise.
 
 class SplatSelector:
 
@@ -22,12 +22,15 @@ class SplatSelector:
         num_objects = len(utility)
         num_layers = len(utility[0])
 
+
+        #do a bit of data manipulation for the multiple choice knapsack code, which has a different data input format
         self.items = list(range(num_objects*num_layers))
         self.values = self.__flatten_concatenation(utility)
         self.weights = self.__flatten_concatenation([list(range(i,i+num_layers*i,i)) for i in size])
         self.groups = self.__flatten_concatenation([[i]*num_layers for i in range(num_objects)])
         self.budget = budget
 
+    # private helper function to flatten a list of lists into a single list
     def __flatten_concatenation(self,matrix):
         flat_list = []
         for row in matrix:

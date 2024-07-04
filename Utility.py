@@ -655,9 +655,9 @@ for i, (point, cov3D, alpha) in enumerate(zip(scene_info.point_cloud.xyz, cov3Ds
         'opacity': alpha[0],
         'overlap': overlap,
         # 'utility': overlap*1/distance,
-        'util_op': overlap*1/distance*alpha[0]
+        'util_op': overlap*1/distance*alpha[0]  #our utility function
     }
     splats.append(p)
     
 # get utility for all splats
-utility = [p['utility'] for p in splats]
+utility = [p['util_op'] for p in splats]

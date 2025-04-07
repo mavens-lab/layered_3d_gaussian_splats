@@ -31,6 +31,13 @@ Download and install Meta Quest Link. Set up the VR headset. Clone the repositor
 ### Run simulation experiments
 Clone the repository from GitHub. Each module of the experiments can be obtained in the repository.
 
+## Hardware dependencies
+We used 4 NVIDIA A40 GPUs for training and simulation experiments. For trace collection, we used a PC with an NVIDIA GeForce RTX 4070 Ti GPU and an Intel Core i7 CPU, and a virtual reality headsets (Meta Quest 3). 
+
+## Software dependencies
+The viewer and user viewport collection code can only run on Windows devices with CUDA support. We tested on a PC with Windows 10. The viewer renders Gaussian splatting in Unity, so Unity must be installed on the device. To use the VR headset, Developer Mode must be enabled. This requires Meta Quest Link, which can be downloaded from: [https://github.com/clarte53/GaussianSplattingVRViewerUnity](https://www.oculus.com/download_app/?id=1582076955407037).To modify the code to use different path of the 3d scene. The code need to be compile again, 
+All simulation code is written in Python and can run on most Linux devices with GPU support.
+
 ## '/Viewer'
 The code for 3DGS viewer and user viewport trace collection. We modified the code from [https://github.com/clarte53/GaussianSplattingVRViewerUnity](https://github.com/clarte53/GaussianSplattingVRViewerUnity).
 

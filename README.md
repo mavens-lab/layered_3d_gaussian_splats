@@ -1,5 +1,5 @@
 <div align="center">
-    <h1> L3GS: Layered 3D Gaussian Splats for Efficient 3D Scene Delivery]{L3GS: Layered 3D Gaussian Splats for Efficient 3D Scene Delivery</h1>
+    <h1> L3GS: Layered 3D Gaussian Splats for Efficient 3D Scene Delivery</h1>
 </div>
 
 ## Abstract
@@ -8,7 +8,8 @@ L3GS is an efficient 3D content delivery framework that allows users to view hig
 
 The key algorithms and models in L3GS that proposed in the paper are summarized as follows: (1) machine learning algorithms to train layered 3DGS scenes for efficient delivery, (2) efficient scheduling algorithms to determine the splats delivery sequence, and (3) a viewport/bandwidth predictor to estimate users' future viewport/bandwidth.
 
-The following datasets are used for the experiments: (1) 3D scene training dataset: Mip-NeRF360, Tanks\&Temples, and 3 segmented scenes from Gaussian Grouping. 
+The following datasets are used for the experiments: 
+(1) 3D scene training dataset: Mip-NeRF360, Tanks\&Temples, and 3 segmented scenes from Gaussian Grouping. 
 (2) bandwidth simulation dataset: sampled and scaled outdoor user walking traces
 (3) user viewport trace dataset: collected viewport traces from 6 users across 8 scenes each.
 
